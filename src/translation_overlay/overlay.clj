@@ -1,7 +1,8 @@
 (ns translation-overlay.overlay
   (:require [translation-overlay.keys :refer [keycode]]
-            [clojure.edn :as edn])
-  (:import [java.lang Runnable]
+            [clojure.edn :as edn]
+            [clojure.java.io :as io])
+  (:import [java.lang Runnable String]
            [java.util.logging Logger Level]
            [javax.swing JFrame JLabel SwingUtilities WindowConstants]
            [java.awt Color Toolkit Dimension]
@@ -12,7 +13,7 @@
 (def properties (atom {}))
 
 (defn read-data [source]
-  (edn/read-string (slurp (str "resources/" source ".edn"))))
+  (edn/read-string (slurp (io/resource (str source ".edn")))))
 
 (defn read-file [source destination]
   (reset! destination (read-data source)))

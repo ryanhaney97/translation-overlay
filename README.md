@@ -22,6 +22,8 @@ I have many plans for this overlay, which will be implemented in time!
 
 ## Changelog
 
+Version 0.1.1 - Fixed an annoying bug with files not being found.
+
 Version 0.1.0 - Very large update. I've added much support to the game, and added .edn files to the resources folder so that one without coding knowledge can somewhat translate (hopefully). There are still many things to do, but for now it works with Yabusame's Scenario in Evanescent Existance. Many things were added, such as keys for the dialogue box, as well as support for .edn files, which can be used to edit the translation, dialogue size and position, amoung other things. Still somewhat limited, but is presentable for now.
 
 Version 0.0.1 - Initial Commit. Currently displays the word "On!" when the 'c' key is pressed. Should even work when window is not in focus, which technically should be all the time. Using "jnativehook" for handling unfocused key presses.
