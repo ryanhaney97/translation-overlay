@@ -92,7 +92,7 @@
   (if (.isVisible dialogue-box)
     (let [full-dialogue (read-data "dialogue")
           position (- (count full-dialogue) (count @dialogue))]
-      (if (not (string? (nth full-dialogue position)))
+      (if (not (string? (nth full-dialogue (dec position))))
         (reset! dialogue (drop (- position 2) full-dialogue))
         (reset! dialogue (drop (dec position) full-dialogue)))
       (change-dialogue-text (first @dialogue)))))

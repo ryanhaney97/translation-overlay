@@ -1,6 +1,6 @@
-(defproject translation-overlay "0.1.0"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+(defproject translation-overlay "0.1.2"
+  :description "Used to translate games by placing an overlay on top of them (kind of like subtitles)."
+  :url "https://github.com/yoshiquest/translation-overlay"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :repositories {"local" "file:jnativehook-repo"}
