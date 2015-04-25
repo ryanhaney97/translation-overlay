@@ -1,4 +1,5 @@
-["Hmm, I wonder where everyone went?"
+[:1
+ "Hmm, I wonder where everyone went?"
  "I guess their scents got all mixed up.
  All the smells are wafting through the air~"
  "Oh, if you expect someone weird to show up..."
@@ -29,6 +30,7 @@
  "Was I too rough with you?"
  "How frustrating..."
  :hide
+ :2
  "Ugh~ What in the world is this place?
  Actually, now that I think about it seems like it's underwater."
  "Something's really off here~
@@ -60,6 +62,7 @@
  "Is that so? Then I guess I'll try going that way."
  "Take care~"
  :hide
+ :3
  "I think I ran into Tsubakura a minute ago, but...
  Where'd she go to?"
  "She looked like she was having fun~ She's really weird~"
@@ -99,6 +102,7 @@
  What's up with her? How weird..."
  "For now I guess I'll chase after her♪"
  :hide
+ :4
  "I thought I smelled someone from over here...
  They must be really fast."
  "Even though they're fast they're still too late."
@@ -128,6 +132,7 @@
  "By the way, why are you so worn out?"
  "Huh... So I've really been reduced to this..."
  :hide
+ :5
  "Ah man, I totally lost sight of her..."
  "But despite that there's such a weird smell...
  My head's getting numb."
@@ -164,6 +169,7 @@
  "...I think I have a feeling who you're talking about."
  "That feeling will be proven quite soon."
  :hide
+ :6
  "I have to apologize for being so persistent...
  But there's something I wanted to try out."
  :hide
@@ -196,4 +202,106 @@
  "By focusing too much on \"haste\",
  you will, over time, \"waste\" away your energy."
  "Actually this is wasting both my time and energy."
- :hide]
+ :hide
+ :bad-ending
+ "Yabusame \".....Ha!　...Hey, where am I...?\""
+ "Yabusame's field of vision was suddenly cast into the darkness.
+ Before she realized it her body was spread out sideways and wrapped in a blanket."
+ "Yabusame \"...What's this... My bed...?\""
+ "She was lying there in her room. Exactly, it was all a dream!"
+ "Yabusame \"Geez... I'm not feeling too great today.\""
+ "Yabusame \"That dream was no joke...
+ It'll definitely turn out better next time, I think?\""
+ "Yabusame \"So! Now that that's decided, I'll go right back to sleep!\""
+ "Having said that, Yabusame plopped back down into her bed and closed her eyelids."
+ "To be continued...?"
+ "ROUTE1 Bad Ending...
+ Aim for a no continue! I know it's tough, but please do your best! I'm sorry!!"
+ :hide
+ :end
+ :good-ending
+ "While a shadow from the sun was cast on her pearl-grey hair,
+ Yabusame, with a doubtful expression, had just finished a thought about her friend."
+ "Yabusame \"This is what always happens but I wonder how bad it'll get.
+ I wonder where Tsubakura is? Maybe she's not even here...\""
+ "While saying that, Yabusame's gaze shifted towards the black sun."
+ "It's not at all what you would expect from a sun. Even if you look straight at it it won't hurt your eyes.
+ It was almost as if it was sucking in the scenery around it, as it released something the opposite of light."
+ "...Or such is the illusion it conveyed.
+ In truth it might have even been sucking in light..."
+ "Yabusame \"....In the end, I have no choice but to go. This sucks~\""
+ "It seems that Yabusame followed her instincts like always,
+ and headed towards the small, black star."
+ "It seems that with what little brains she had,
+ Yabusame wasn't able to think of any other option but that."
+ "To be continued ---- EXTRA STAGE..."
+ "ROUTE1 ALL CLEAR!!
+ You did it! But you know it's not over yet?"
+ :hide
+ :end
+ :extra
+ "If I were to end in such an unsightly way,
+ I wouldn't be much of an \"adult\"."
+ "You're trying to redeem yourself of your dishonor?
+ I'll make sure you're plenty unsightly by the end of this♪"
+ "We'll see about that.
+ I'm going to make you really get \"serious\"!"
+ :hide
+ "What a weird place...
+ Is this the goal?"
+ "Give up your prestige♪"
+ "Oh no, another crazy person..."
+ "...Has come?
+ I'm impressed you made it all the way here."
+ "I'm impressed you changed your clothes."
+ "However, I never gave you permission to come here.
+ Beat the level properly, without using warp zones."
+ "Nevermind about that♪"
+ "I was just trying to buy some time...
+ I needed to prepare to go easy on you."
+ "Huh?"
+ "I'm saying that I needed a little more time to prepare the handicap."
+ "...Aren't you saying something really irritating?"
+ "I am. I've even said it twice now, using different words."
+ "...It's best not to be so conceited, you know?"
+ "It's just like I said, though.
+ You're looking worn out."
+ "Thanks to you... By the way, where's Tsubakura?"
+ "Oh, so you were able to see through my disguise.
+ You're pretty good at this."
+ "And who are you?"
+ "In a minute account, well, who I am is yet to be determined."
+ "...Where's Tsubakura? Answer me."
+ "If you want me to answer,
+ I recommend you recover your spirit a bit."
+ "...Then shall we?"
+ "Haha, very good!
+ Well then, shall we do the cha-cha?"
+ "...It was a mistake for you to impersonate Tsubakura like this."
+ :hide
+ "Oh my~ You're so strong~
+ Even more so than I thought."
+ "...I'm not satisfied punishing you,
+ if you don't even use your true power."
+ "Oops, I was found out."
+ "What's up with you? Who are you? And where's Tsubakura?"
+ "Hmmm~mmm? It's a pain for me to answer all your questions,
+ so why don't I call out Tsubakura herself."
+ "Eh! No way!? She's around here somewhere?"
+ "Ta-dah~"
+ "........."
+ ".....?"
+ "...Huh?"
+ "No one came out, you know?"
+ "How strange.... Hm? What's this?
+ She left a letter behind? Let's see what it says..."
+ "\"I got first place! -Tsubakura\""
+ ".....?"
+ "...Looks like the rascal went ahead on her own."
+ "Or maybe you're lying about all this."
+ "I see, you're treating me like a nuisance again...
+ This is the second time already."
+ "Well then, just go ahead and explain everything to me♪"
+ "...Now this is a dilemma....."
+ :hide
+ :end]

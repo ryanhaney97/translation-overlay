@@ -8,7 +8,12 @@
 
 (def letter-list (map char (range (int \a) (inc (int \z)))))
 
-(def native-keys (zipmap (map keyword (map str letter-list)) (map make-key letter-list)))
+(def number-list (map char (range (int \0) (inc (int \9)))))
+
+(def native-keys (merge (zipmap (map keyword (map str letter-list)) (map make-key letter-list))
+                        (zipmap (map keyword (map str number-list)) (map make-key number-list))
+                        {:open-bracket NativeKeyEvent/VC_OPEN_BRACKET
+                         :close-bracket NativeKeyEvent/VC_CLOSE_BRACKET}))
 
 (defn keycode [native-key]
   (get native-keys native-key))

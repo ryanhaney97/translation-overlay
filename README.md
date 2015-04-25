@@ -16,11 +16,29 @@ a key: moves dialogue back one stage without affecting the game. Only works when
 
 s key: moves the dialogue forward one stage without affecting the game. Only works when dialogue is visible.
 
-Currently only supports Yabusame's main scenario. Other scenarios will be supported in time. Also only supports windowed mode. Fullscreen mode will also hopefully be supported in time. Windows should not be moved from their default positions, as the overlay does not move yet.
+keys 1-7: skips dialogue to the respective stage, with 7 being the extra stage.
+
+g key: skips dialogue to good ending. Dialogue proceeds to bad ending by default, so use this if you get the good ending.
+
+b key: skips dialogue to bad ending.
+
+bracket keys ([ or ]): Used to swap between different characters' dialogue (Yabusame and Tsubakura by default). Starts with Yabusame's by default.
+
+Currently only supports windowed mode. Fullscreen mode will also hopefully be supported in time. Windows should not be moved from their default positions, as the overlay does not move yet.
 
 I have many plans for this overlay, which will be implemented in time!
 
+## Downloads
+
+[Version 0.2.0](http://bit.ly/1zZqG3z "Version 0.2.0 Download")
+
+[Version 0.1.2](http://bit.ly/1DrQ7MK "Version 0.1.2 Download")
+
+[Version 0.1.1](http://bit.ly/1d9BY0x "Version 0.1.1 Download")
+
 ## Changelog
+
+Version 0.2.0 - Lots of things were done in this one. I added the rest of Evanescent Existence's Dialogue to the overlay, as well as several new keybindings to allow for this (so re-read the usage section!). Changed the color of the dialogue a bit to hopefully make it a little bit easier to see (this is temporary, I have a better idea in mind), as well as changed it so that the overlay activates upon pressing the key, rather than releasing it. Also fixed bugs.
 
 Version 0.1.2 - Fixed the :hide keyword showing up when backing up through text with the "a" key. Also updated the version name in code and added some settings to project.clj.
 
