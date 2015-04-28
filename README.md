@@ -30,6 +30,8 @@ I have many plans for this overlay, which will be implemented in time!
 
 ## Downloads
 
+[Version 0.2.1](http://bit.ly/1OA4IAc "Version 0.2.1 Download")
+
 [Version 0.2.0](http://bit.ly/1zZqG3z "Version 0.2.0 Download")
 
 [Version 0.1.2](http://bit.ly/1DrQ7MK "Version 0.1.2 Download")
@@ -37,6 +39,8 @@ I have many plans for this overlay, which will be implemented in time!
 [Version 0.1.1](http://bit.ly/1d9BY0x "Version 0.1.1 Download")
 
 ## Changelog
+
+Version 0.2.1 - Fixed the darn bracket keys. They should switch scenarios properly now. Also changed the color of the text again.
 
 Version 0.2.0 - Lots of things were done in this one. I added the rest of Evanescent Existence's Dialogue to the overlay, as well as several new keybindings to allow for this (so re-read the usage section!). Changed the color of the dialogue a bit to hopefully make it a little bit easier to see (this is temporary, I have a better idea in mind), as well as changed it so that the overlay activates upon pressing the key, rather than releasing it. Also fixed bugs.
 

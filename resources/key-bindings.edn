@@ -2,8 +2,8 @@
  :proceed-dialogue :z
  :forward :s
  :backward :a
- :selection-forwards :open-bracket
- :selection-backwards :close-bracket
+ :selection-forwards :close-bracket
+ :selection-backwards :open-bracket
  :waypoints
  ;key,go-to-key
  {:1 :1

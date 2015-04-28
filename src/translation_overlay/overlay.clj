@@ -6,7 +6,7 @@
   (:import [java.lang Runnable String]
            [java.util.logging Logger Level]
            [javax.swing JFrame JLabel SwingUtilities WindowConstants]
-           [java.awt Color Toolkit Dimension]
+           [java.awt Color Toolkit Dimension BasicStroke Graphics Graphics2D]
            [org.jnativehook GlobalScreen NativeHookException SwingDispatchService]
            [org.jnativehook.keyboard NativeKeyEvent NativeKeyListener]))
 
@@ -133,7 +133,8 @@
 (defn selection-forwards []
   (if (empty? (rest @current-sources))
     (reset! current-sources (:sources @properties))
-    (swap! current-sources rest))
+    (do
+      (swap! current-sources rest)))
   (read-file (first @current-sources) dialogue)
   (pass-keywords)
   (change-dialogue-text (first @dialogue)))
@@ -141,15 +142,15 @@
 (defn selection-backwards []
   (let [full-sources (:sources @properties)
         position (- (count full-sources) (count @current-sources))]
-    (if (< position 0)
+    (if (= position 0)
       (reset! current-sources [(last (:sources @properties))])
-      (reset! current-sources (drop position full-sources))))
+      (reset! current-sources (drop (dec position) full-sources))))
   (read-file (first @current-sources) dialogue)
   (pass-keywords)
   (change-dialogue-text (first @dialogue)))
 
 (defn go-to [position]
-  (let [full-dialogue (read-data (first (:sources @properties)))
+  (let [full-dialogue (read-data (first @current-sources))
         index (.indexOf full-dialogue position)]
     (if (not= index -1)
       (do
