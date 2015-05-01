@@ -14,22 +14,18 @@
 (def properties (atom {}))
 (def key-bindings (atom {}))
 (def key-pressed? (atom {}))
+(def game (atom ""))
+(declare dialogue-box)
 
 (defn read-data [source]
-  (edn/read-string (slurp (io/resource (str source ".edn")))))
+  (edn/read-string (slurp (io/resource (str "resources/" @game "/" source ".edn")))))
 
 (defn read-file [source destination]
   (reset! destination (read-data source)))
 
-(read-file "properties" properties)
-(read-file (first (:sources @properties)) dialogue)
-(read-file "key-bindings" key-bindings)
-
 (defn load-keys []
   (let [bound-keys (concat (vals (dissoc @key-bindings :waypoints)) (keys (:waypoints @key-bindings)))]
     (dorun (map #(swap! key-pressed? assoc %1 false) (map keycode bound-keys)))))
-
-(load-keys)
 
 (defn pass-keywords []
   (if (keyword? (first @dialogue))
@@ -37,9 +33,7 @@
       (swap! dialogue rest)
       (pass-keywords))))
 
-(pass-keywords)
-
-(def current-sources (atom (:sources @properties)))
+(def current-sources (atom nil))
 
 (defn make-runnable [func]
   (proxy [Runnable] []
@@ -58,6 +52,7 @@
     listener))
 
 (defn key->color [k]
+  (import java.awt.Color)
   (if (keyword? k)
     (load-string (str "Color/" (name k)))
     (load-string (str "(Color. " k ")"))))
@@ -65,18 +60,22 @@
 (defn make-paragraph [message]
   (str "<html><p>" message "</p></html>"))
 
-(def dialogue-box (let [dialogue-properties (:dialogue @properties)]
-                    (doto
-                      (JLabel. (make-paragraph (first @dialogue)))
-                      (.setLocation (:x dialogue-properties) (:y dialogue-properties))
-                      (.setForeground (key->color (:color dialogue-properties)))
-                      (.setSize (:width dialogue-properties) (:height dialogue-properties))
-                      (.setVisible false))))
+(defn init-dialogue-box []
+  (let [dialogue-properties (:dialogue @properties)
+        result
+        (doto
+          (JLabel. (make-paragraph (first @dialogue)))
+          (.setLocation (:x dialogue-properties) (:y dialogue-properties))
+          (.setForeground (key->color (:color dialogue-properties)))
+          (.setSize (:width dialogue-properties) (:height dialogue-properties))
+          (.setVisible false))]
+    (def dialogue-box result)))
 
 (defn refresh-dialogue []
   (let [dialogue-properties (:dialogue @properties)]
     (doto
       dialogue-box
+      (.setForeground (key->color (:color dialogue-properties)))
       (.setLocation (:x dialogue-properties) (:y dialogue-properties))
       (.setSize (:width dialogue-properties) (:height dialogue-properties)))))
 
@@ -179,20 +178,38 @@
           (keycode (:backward @key-bindings)) (backward)
           (keycode (:selection-forwards @key-bindings)) (selection-forwards)
           (keycode (:selection-backwards @key-bindings)) (selection-backwards)
+          (keycode :r) (refresh-properties)
           (handle-waypoints key-code-event))))))
 
 (defn on-key-released [key-event]
   (if (get @key-pressed? (.getKeyCode key-event))
     (swap! key-pressed? assoc (.getKeyCode key-event) false)))
 
+(defn disable-logger []
+  (let [logger (Logger/getLogger (.getName (.getPackage (class GlobalScreen))))]
+    (.setLevel logger Level/OFF)
+    (dorun (map #(.setLevel %1 Level/OFF) (.getHandlers (Logger/getLogger ""))))))
+
 (defn initialize-natives []
   (try
     (GlobalScreen/registerNativeHook)
     (add-key-listener on-key-pressed on-key-released identity)
+    (dorun (disable-logger))
     (catch Exception e
       (do (println (str "There was a problem registering the native hook: " (.getMessage e)))))))
 
-(defn initialize-window []
+(defn init-data []
+  (read-file "properties" properties)
+  (read-file (first (:sources @properties)) dialogue)
+  (read-file "key-bindings" key-bindings)
+  (reset! current-sources (:sources @properties))
+  (load-keys)
+  (pass-keywords))
+
+(defn initialize-window [g]
+  (reset! game g)
+  (init-data)
+  (init-dialogue-box)
   (GlobalScreen/setEventDispatcher (SwingDispatchService.))
   (initialize-natives)
   (let [frame (JFrame. "")

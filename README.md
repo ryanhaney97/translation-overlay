@@ -1,10 +1,10 @@
 # Translation Overlay
 
-An overlay for translating (or "subtitling") games. Currently in-dev, and works for the first game in the Lenen Project: Evanescent Existence.
+An overlay for translating (or "subtitling") games. Currently in-dev, and works for the first and second games in the Lenen Project: Evanescent Existence and Earthen Miraculous Sword.
 
 ## Usage
 
-To use the program, run this and the game in question (as of now, Lenen Project: Evanescent Existence). On windows, it should be good to go immediately. On mac the game will become unfocused when the game starts, so use mission control (swipe up with three fingers) to put the window back into focus, which should make it work so long as you don't click on the game window.
+To use the program, run this and the game in question (as of now, Lenen Project: Evanescent Existence or Lenen Project: Earthen Miraculous Sword). Select the game you are playing with the drop-down menu upon startup. On windows, it should be good to go immediately. On mac the game will become unfocused when the game starts, so use mission control (swipe up with three fingers) to put the window back into focus, which should make it work so long as you don't click on the game window.
 
 This program can't pick up what goes on in game, so the user needs to hit certain keys in order to control the overlay. By default, these keys are:
 
@@ -28,7 +28,16 @@ Currently only supports windowed mode. Fullscreen mode will also hopefully be su
 
 I have many plans for this overlay, which will be implemented in time!
 
+## Editting/Adding Translations
+
+If you want to edit the overlay, you currently need to use an archive utility on the .jar file, such as winrar or
+7-zip. The .edn files should then be accessible from there. The "sample" files for the games implemented so far should be in there for editting, and should also be in the repository under the resources folder. A better way of creating and editting translation files is another thing on my list of things to do.
+
+.....This should work, though I haven't actually tried it yet.
+
 ## Downloads
+
+[Version 0.3.0](http://bit.ly/1OKLd86 "Version 0.3.0 Download")
 
 [Version 0.2.1](http://bit.ly/1OA4IAc "Version 0.2.1 Download")
 
@@ -39,6 +48,8 @@ I have many plans for this overlay, which will be implemented in time!
 [Version 0.1.1](http://bit.ly/1d9BY0x "Version 0.1.1 Download")
 
 ## Changelog
+
+Version 0.3.0 - Added support for multiple games! Use the drop-down menu on startup in order to select the game of choice. Fully supports Evanescent Existance, while having Yabusame's main scenario in Earthen Miraculous Sword translated as well. More translations for Earthen Miraculous Sword will be added after those respective files have been translated on the wiki.
 
 Version 0.2.1 - Fixed the darn bracket keys. They should switch scenarios properly now. Also changed the color of the text again.
 
@@ -51,6 +62,18 @@ Version 0.1.1 - Fixed an annoying bug with files not being found.
 Version 0.1.0 - Very large update. I've added much support to the game, and added .edn files to the resources folder so that one without coding knowledge can somewhat translate (hopefully). There are still many things to do, but for now it works with Yabusame's Scenario in Evanescent Existance. Many things were added, such as keys for the dialogue box, as well as support for .edn files, which can be used to edit the translation, dialogue size and position, amoung other things. Still somewhat limited, but is presentable for now.
 
 Version 0.0.1 - Initial Commit. Currently displays the word "On!" when the 'c' key is pressed. Should even work when window is not in focus, which technically should be all the time. Using "jnativehook" for handling unfocused key presses.
+
+## Todo
+
+(Not necessarily in any order)
+
+- Translate the other Lenen Project games. (Awaiting Translations)
+- Add a black outline around labels to help visibility.
+- Add labels to handle other GUI elements, such as UI items and the pause menu.
+- Add fullscreen support.
+- Make it easier to edit .edn files, without having to use an archive utility to edit them.
+- Make a separate application (or incorporate into this app as a special "mode"), that will allow a graphical way of positioning things such as dialogue boxes, the window location and size, etc.
+- Squish bugs.
 
 ## License
 

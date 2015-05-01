@@ -1,0 +1,16 @@
+{:toggle-visible :c
+ :proceed-dialogue :z
+ :forward :s
+ :backward :a
+ :selection-forwards :close-bracket
+ :selection-backwards :open-bracket
+ :waypoints
+ ;key,go-to-key
+ {:1 :1
+  :2 :2
+  :3 :3
+  :4 :4
+  :5 :5
+  :6 :6
+  :b :bad-ending
+  :g :good-ending}}
