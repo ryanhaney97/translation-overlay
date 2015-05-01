@@ -9,15 +9,15 @@
 (def message (atom ""))
 
 (defn get-paths []
-  (let [path (file-seq (clojure.java.io/file "../resources"))]
+  (let [path (file-seq (clojure.java.io/file "../translations"))]
     (if (.exists (first path))
       path
-      (file-seq (clojure.java.io/file "resources/")))))
+      (file-seq (clojure.java.io/file "translations/")))))
 
 (defn get-folders []
   (let [paths (get-paths)
-        filtered (filter (complement (partial re-matches #".*\.edn|.*\.DS_Store"))  (map str paths))]
-    (filter (complement empty?) (map #(string/replace %1 #"\/|resources|\." "") filtered))))
+        filtered (filter (complement (partial re-matches #".*\.[A-z]*"))  (map str paths))]
+    (filter (complement empty?) (map #(string/replace %1 #"\/|resources|\.|translations" "") filtered))))
 
 (defn make-button [text func]
   (let [button (JButton. text)

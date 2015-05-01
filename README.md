@@ -1,6 +1,6 @@
 # Translation Overlay
 
-An overlay for translating (or "subtitling") games. Currently in-dev, and works for the first and second games in the Lenen Project: Evanescent Existence and Earthen Miraculous Sword.
+An overlay for translating (or "subtitling") games. Currently in-dev, and works for the first and second games in the Lenen Project: Evanescent Existence and Earthen Miraculous Sword. Should be able to support other translations as well now.
 
 ## Usage
 
@@ -30,12 +30,11 @@ I have many plans for this overlay, which will be implemented in time!
 
 ## Editting/Adding Translations
 
-If you want to edit the overlay, you currently need to use an archive utility on the .jar file, such as winrar or
-7-zip. The .edn files should then be accessible from there. The "sample" files for the games implemented so far should be in there for editting, and should also be in the repository under the resources folder. A better way of creating and editting translation files is another thing on my list of things to do.
-
-.....This should work, though I haven't actually tried it yet.
+If you want to edit the overlay, you simply need to edit the files in the "translations" folder included with the download. Feel free to use the existing translation files as a reference.
 
 ## Downloads
+
+[Version 0.3.1](http://bit.ly/1zkKK5B "Version 0.3.1 Download")
 
 [Version 0.3.0](http://bit.ly/1OKLd86 "Version 0.3.0 Download")
 
@@ -48,6 +47,8 @@ If you want to edit the overlay, you currently need to use an archive utility on
 [Version 0.1.1](http://bit.ly/1d9BY0x "Version 0.1.1 Download")
 
 ## Changelog
+
+Version 0.3.1 - Fixed a very annoying bug involving the game failing to read files. Also involved moving the translation data outside of the .jar file, so I went ahead and knocked out 2 things at once.
 
 Version 0.3.0 - Added support for multiple games! Use the drop-down menu on startup in order to select the game of choice. Fully supports Evanescent Existance, while having Yabusame's main scenario in Earthen Miraculous Sword translated as well. More translations for Earthen Miraculous Sword will be added after those respective files have been translated on the wiki.
 
@@ -71,7 +72,6 @@ Version 0.0.1 - Initial Commit. Currently displays the word "On!" when the 'c' k
 - Add a black outline around labels to help visibility.
 - Add labels to handle other GUI elements, such as UI items and the pause menu.
 - Add fullscreen support.
-- Make it easier to edit .edn files, without having to use an archive utility to edit them.
 - Make a separate application (or incorporate into this app as a special "mode"), that will allow a graphical way of positioning things such as dialogue boxes, the window location and size, etc.
 - Squish bugs.
 
