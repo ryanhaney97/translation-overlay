@@ -1,4 +1,5 @@
 {:toggle-visible :c
+ :quit :q
  :proceed-dialogue :z
  :forward :s
  :backward :a

@@ -3,10 +3,11 @@
             [clojure.edn :as edn]
             [clojure.java.io :as io]
             [clojure.set :as cset])
-  (:import [java.lang Runnable String]
+  (:import [java.lang Runnable String System]
            [java.util.logging Logger Level]
            [javax.swing JFrame JLabel SwingUtilities WindowConstants]
            [java.awt Color Toolkit Dimension BasicStroke Graphics Graphics2D]
+           [java.awt.event WindowListener]
            [org.jnativehook GlobalScreen NativeHookException SwingDispatchService]
            [org.jnativehook.keyboard NativeKeyEvent NativeKeyListener]))
 
@@ -50,6 +51,23 @@
                                    (key-typed event)))]
     (GlobalScreen/addNativeKeyListener listener)
     listener))
+
+(defn make-window-listener [opened closed closing iconified deiconified activated deactivated]
+  (proxy [WindowListener] []
+    (windowOpened [event]
+                  (opened event))
+    (windowClosed [event]
+                  (closed event))
+    (windowClosing [event]
+                   (closing event))
+    (windowIconified [event]
+                     (iconified event))
+    (windowDeiconified [event]
+                       (deiconified event))
+    (windowActivated [event]
+                     (opened event))
+    (windowDeactivated [event]
+                       (closed event))))
 
 (defn key->color [k]
   (import java.awt.Color)
@@ -166,6 +184,11 @@
       (go-to (get translated key-code-event))
       nil)))
 
+(defn end-session [& args]
+  (GlobalScreen/unregisterNativeHook)
+  (System/runFinalization)
+  (System/exit 0))
+
 (defn on-key-pressed [key-event]
   (let [key-code-event (.getKeyCode key-event)]
     (if (not (get @key-pressed? key-code-event))
@@ -178,6 +201,7 @@
           (keycode (:backward @key-bindings)) (backward)
           (keycode (:selection-forwards @key-bindings)) (selection-forwards)
           (keycode (:selection-backwards @key-bindings)) (selection-backwards)
+          (keycode (:quit @key-bindings)) (end-session)
           (keycode :r) (refresh-properties)
           (handle-waypoints key-code-event))))))
 
@@ -210,13 +234,16 @@
   (reset! game g)
   (init-data)
   (init-dialogue-box)
-  (GlobalScreen/setEventDispatcher (SwingDispatchService.))
   (initialize-natives)
+  (GlobalScreen/setEventDispatcher (SwingDispatchService.))
   (let [frame (JFrame. "")
         content (.getContentPane frame)
         screen-size (.getScreenSize (Toolkit/getDefaultToolkit))]
     (doto frame
+      (.addWindowListener (make-window-listener identity end-session identity identity identity identity identity))
       (.setUndecorated true)
+      (.setFocusable false)
+      (.setFocusableWindowState false)
       (.setBackground (Color. 0 0 0 0))
       (.setAlwaysOnTop true)
       (.setSize 640 480)

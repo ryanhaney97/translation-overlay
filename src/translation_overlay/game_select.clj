@@ -17,7 +17,7 @@
 (defn get-folders []
   (let [paths (get-paths)
         filtered (filter (complement (partial re-matches #".*\.[A-z]*"))  (map str paths))]
-    (filter (complement empty?) (map #(string/replace %1 #"\/|resources|\.|translations" "") filtered))))
+    (filter (complement empty?) (map #(string/replace %1 #"\/|resources|\.|translations|\\" "") filtered))))
 
 (defn make-button [text func]
   (let [button (JButton. text)

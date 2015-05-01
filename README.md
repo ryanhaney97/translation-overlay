@@ -8,6 +8,8 @@ To use the program, run this and the game in question (as of now, Lenen Project:
 
 This program can't pick up what goes on in game, so the user needs to hit certain keys in order to control the overlay. By default, these keys are:
 
+q key: exits the overlay.
+
 c key: shows/hides the dialogue box. Press this upon reaching a boss or another place with dialogue.
 
 z key: displays the next line in the dialogue. Overwrites the normal dialogue advancing key, so that the game's dialogue moves as well as the overlay's dialogue. Only works when dialogue is visible.
@@ -34,6 +36,8 @@ If you want to edit the overlay, you simply need to edit the files in the "trans
 
 ## Downloads
 
+[Version 0.3.2](http://bit.ly/1I3Ws7Q "Version 0.3.2 Download")
+
 [Version 0.3.1](http://bit.ly/1zkKK5B "Version 0.3.1 Download")
 
 [Version 0.3.0](http://bit.ly/1OKLd86 "Version 0.3.0 Download")
@@ -47,6 +51,8 @@ If you want to edit the overlay, you simply need to edit the files in the "trans
 [Version 0.1.1](http://bit.ly/1d9BY0x "Version 0.1.1 Download")
 
 ## Changelog
+
+Version 0.3.2 - Fixed another annoying bug with the reader on windows computers. I also made it so that java shuts down properly. I also bound a key to close the window, "q" by default.
 
 Version 0.3.1 - Fixed a very annoying bug involving the game failing to read files. Also involved moving the translation data outside of the .jar file, so I went ahead and knocked out 2 things at once.
 
