@@ -2,10 +2,11 @@
   (:require [translation-overlay.keys :refer [keycode]]
             [clojure.edn :as edn]
             [clojure.java.io :as io]
-            [clojure.set :as cset])
+            [clojure.set :as cset]
+            [clojure.string :as string])
   (:import [java.lang Runnable String System]
            [java.util.logging Logger Level]
-           [javax.swing JFrame JLabel SwingUtilities WindowConstants]
+           [javax.swing JFrame JTextArea SwingUtilities WindowConstants]
            [java.awt Color Toolkit Dimension BasicStroke Graphics Graphics2D]
            [java.awt.event WindowListener]
            [org.jnativehook GlobalScreen NativeHookException SwingDispatchService]
@@ -75,16 +76,19 @@
     (load-string (str "Color/" (name k)))
     (load-string (str "(Color. " k ")"))))
 
-(defn make-paragraph [message]
-  (str "<html><p>" message "</p></html>"))
+(defn remove-newlines [string]
+  (string/replace string #"\n" ""))
 
 (defn init-dialogue-box []
   (let [dialogue-properties (:dialogue @properties)
         result
         (doto
-          (JLabel. (make-paragraph (first @dialogue)))
+          (JTextArea. (remove-newlines (first @dialogue)))
           (.setLocation (:x dialogue-properties) (:y dialogue-properties))
-          (.setForeground (key->color (:color dialogue-properties)))
+          (.setForeground (key->color (:text-color dialogue-properties)))
+          (.setBackground (key->color (:background-color dialogue-properties)))
+          (.setLineWrap true)
+          (.setWrapStyleWord true)
           (.setSize (:width dialogue-properties) (:height dialogue-properties))
           (.setVisible false))]
     (def dialogue-box result)))
@@ -93,7 +97,8 @@
   (let [dialogue-properties (:dialogue @properties)]
     (doto
       dialogue-box
-      (.setForeground (key->color (:color dialogue-properties)))
+      (.setForeground (key->color (:text-color dialogue-properties)))
+      (.setBackground (key->color (:background-color dialogue-properties)))
       (.setLocation (:x dialogue-properties) (:y dialogue-properties))
       (.setSize (:width dialogue-properties) (:height dialogue-properties)))))
 
@@ -102,7 +107,7 @@
   (refresh-dialogue))
 
 (defn change-dialogue-text [message]
-  (.setText dialogue-box (make-paragraph message)))
+  (.setText dialogue-box (remove-newlines message)))
 
 (defn swap-visible []
   (.setVisible dialogue-box (not (.isVisible dialogue-box))))

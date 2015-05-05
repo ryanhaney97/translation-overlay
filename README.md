@@ -36,6 +36,8 @@ If you want to edit the overlay, you simply need to edit the files in the "trans
 
 ## Downloads
 
+[Version 0.3.3](http://bit.ly/1zx9Eir "Version 0.3.3 Download")
+
 [Version 0.3.2](http://bit.ly/1I3Ws7Q "Version 0.3.2 Download")
 
 [Version 0.3.1](http://bit.ly/1zkKK5B "Version 0.3.1 Download")
@@ -51,6 +53,8 @@ If you want to edit the overlay, you simply need to edit the files in the "trans
 [Version 0.1.1](http://bit.ly/1d9BY0x "Version 0.1.1 Download")
 
 ## Changelog
+
+Version 0.3.3 - Added a background to the dialogue box, and moved it down to compensate.
 
 Version 0.3.2 - Fixed another annoying bug with the reader on windows computers. I also made it so that java shuts down properly. I also bound a key to close the window, "q" by default.
 

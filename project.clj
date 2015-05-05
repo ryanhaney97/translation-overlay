@@ -1,4 +1,4 @@
-(defproject translation-overlay "0.3.2"
+(defproject translation-overlay "0.3.3"
   :description "Used to translate games by placing an overlay on top of them (kind of like subtitles)."
   :url "https://github.com/yoshiquest/translation-overlay"
   :license {:name "Eclipse Public License"

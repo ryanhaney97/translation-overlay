@@ -1,6 +1,7 @@
 {:dialogue {:x 47
-            :y 292
+            :y 360
             :width 345
             :height 68
-            :color 0xEEEEEE}
+            :text-color :black
+            :background-color :white}
  :sources ["yabusame" "tsubakura"]}
