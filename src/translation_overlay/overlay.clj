@@ -6,7 +6,7 @@
             [clojure.string :as string])
   (:import [java.lang Runnable String System]
            [java.util.logging Logger Level]
-           [javax.swing JFrame JTextArea SwingUtilities WindowConstants]
+           [javax.swing JFrame JRootPane JTextArea SwingUtilities WindowConstants]
            [java.awt Color Toolkit Dimension BasicStroke Graphics Graphics2D]
            [java.awt.event WindowListener]
            [org.jnativehook GlobalScreen NativeHookException SwingDispatchService]
@@ -17,10 +17,16 @@
 (def key-bindings (atom {}))
 (def key-pressed? (atom {}))
 (def game (atom ""))
-(declare dialogue-box)
+(declare dialogue-box frame middle-x middle-y)
+
+(defn get-paths []
+  (let [path (clojure.java.io/file "../translations/")]
+    (if (.exists path)
+      "../translations/"
+      "translations/")))
 
 (defn read-data [source]
-  (edn/read-string (slurp (io/resource (str "resources/" @game "/" source ".edn")))))
+  (edn/read-string (slurp (str (get-paths) "games/" @game "/" source ".edn"))))
 
 (defn read-file [source destination]
   (reset! destination (read-data source)))
@@ -93,6 +99,14 @@
           (.setVisible false))]
     (def dialogue-box result)))
 
+(defn read-location [property]
+  (if (string? property)
+    (let [property-replaced (-> property
+                                (string/replace "middle-x" "translation-overlay.overlay/middle-x")
+                                (string/replace "middle-y" "translation-overlay.overlay/middle-y"))]
+      (load-string property-replaced))
+    property))
+
 (defn refresh-dialogue []
   (let [dialogue-properties (:dialogue @properties)]
     (doto
@@ -102,8 +116,15 @@
       (.setLocation (:x dialogue-properties) (:y dialogue-properties))
       (.setSize (:width dialogue-properties) (:height dialogue-properties)))))
 
+(defn refresh-window []
+  (doto
+    frame
+    (.setSize (get-in @properties [:window :width]) (get-in @properties [:window :height]))
+    (.setLocation (read-location (get-in @properties [:window :x])) (read-location (get-in @properties [:window :y])))))
+
 (defn refresh-properties []
   (read-file "properties" properties)
+  (refresh-window)
   (refresh-dialogue))
 
 (defn change-dialogue-text [message]
@@ -194,6 +215,14 @@
   (System/runFinalization)
   (System/exit 0))
 
+(defn toggle-transparency []
+  (let [visible? (= (.getAlpha (.getBackground frame)) 0)]
+    (.removeNotify frame)
+    (if visible? (.setBackground frame (Color. 255 255 255 255)))
+    (.setUndecorated frame (not (.isUndecorated frame)))
+    (if (not visible?) (.setBackground frame (Color. 255 255 255 0)))
+    (.addNotify frame)))
+
 (defn on-key-pressed [key-event]
   (let [key-code-event (.getKeyCode key-event)]
     (if (not (get @key-pressed? key-code-event))
@@ -207,7 +236,8 @@
           (keycode (:selection-forwards @key-bindings)) (selection-forwards)
           (keycode (:selection-backwards @key-bindings)) (selection-backwards)
           (keycode (:quit @key-bindings)) (end-session)
-          (keycode :r) (refresh-properties)
+          (keycode (:move-window @key-bindings)) (toggle-transparency)
+          (keycode (:refresh @key-bindings)) (refresh-properties)
           (handle-waypoints key-code-event))))))
 
 (defn on-key-released [key-event]
@@ -241,18 +271,20 @@
   (init-dialogue-box)
   (initialize-natives)
   (GlobalScreen/setEventDispatcher (SwingDispatchService.))
-  (let [frame (JFrame. "")
-        content (.getContentPane frame)
+  (def frame (JFrame. ""))
+  (let [content (.getContentPane frame)
         screen-size (.getScreenSize (Toolkit/getDefaultToolkit))]
+    (def middle-x (- (/ (int (.getWidth screen-size)) 2) (/ (int (get-in @properties [:window :width])) 2)))
+    (def middle-y (- (/ (int (.getHeight screen-size)) 2) (/ (int (get-in @properties [:window :height])) 2)))
     (doto frame
       (.addWindowListener (make-window-listener identity end-session identity identity identity identity identity))
       (.setUndecorated true)
       (.setFocusable false)
       (.setFocusableWindowState false)
-      (.setBackground (Color. 0 0 0 0))
+      (.setBackground (Color. 255 255 255 0))
       (.setAlwaysOnTop true)
-      (.setSize 640 480)
-      (.setLocation (- (/ (int (.getWidth screen-size)) 2) 320) (- (/ (int (.getHeight screen-size)) 2) 240))
+      (.setSize (get-in @properties [:window :width]) (get-in @properties [:window :height]))
+      (.setLocation (read-location (get-in @properties [:window :x])) (read-location (get-in @properties [:window :y])))
       (.setDefaultCloseOperation WindowConstants/DISPOSE_ON_CLOSE))
     (.setLayout content nil)
     (.add frame dialogue-box)

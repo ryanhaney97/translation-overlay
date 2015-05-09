@@ -1,7 +1,0 @@
-{:dialogue {:x 47
-            :y 360
-            :width 345
-            :height 68
-            :text-color :black
-            :background-color :white}
- :sources ["yabusame"]}

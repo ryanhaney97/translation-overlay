@@ -26,15 +26,19 @@ b key: skips dialogue to bad ending.
 
 bracket keys ([ or ]): Used to swap between different characters' dialogue (Yabusame and Tsubakura by default). Starts with Yabusame's by default.
 
+t key: use to move the overlay window around. It is properly positioned when the titlebars line up.
+
 Currently only supports windowed mode. Fullscreen mode will also hopefully be supported in time. Windows should not be moved from their default positions, as the overlay does not move yet.
 
 I have many plans for this overlay, which will be implemented in time!
 
 ## Editting/Adding Translations
 
-If you want to edit the overlay, you simply need to edit the files in the "translations" folder included with the download. Feel free to use the existing translation files as a reference.
+If you want to edit the overlay, you simply need to edit the files in the "translations" folder included with the download. Feel free to use the existing translation files as a reference. Should you manage to create a new translation, let me know and I'll add it to the currently available translations!
 
 ## Downloads
+
+[Version 0.4.0](http://bit.ly/1JySC3U "Version 0.4.0 Download")
 
 [Version 0.3.3](http://bit.ly/1zx9Eir "Version 0.3.3 Download")
 
@@ -53,6 +57,8 @@ If you want to edit the overlay, you simply need to edit the files in the "trans
 [Version 0.1.1](http://bit.ly/1d9BY0x "Version 0.1.1 Download")
 
 ## Changelog
+
+Version 0.4.0 - Added the ability to move the overlay window (use the "t" key)! Also added options to the .edn files to allow for different window sizes and locations. Also fixed a bug where the app kept looking at the wrong translation files. It should now be completely possible to write a custom translation for any game of choice.
 
 Version 0.3.3 - Added a background to the dialogue box, and moved it down to compensate.
 

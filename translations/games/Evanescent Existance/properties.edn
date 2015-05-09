@@ -1,7 +1,11 @@
-{:dialogue {:x 47
-            :y 360
+{:dialogue {:x 52
+            :y 399
             :width 345
             :height 68
             :text-color :black
             :background-color :white}
+ :window {:width 643
+          :height 506
+          :x "(- middle-x 5.5)"
+          :y "(- middle-y 26)"}
  :sources ["yabusame" "tsubakura"]}

@@ -5,6 +5,8 @@
  :backward :a
  :selection-forwards :close-bracket
  :selection-backwards :open-bracket
+ :refresh :r
+ :move-window :t
  :waypoints
  ;key,go-to-key
  {:1 :1
