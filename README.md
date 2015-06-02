@@ -84,6 +84,7 @@ Version 0.0.1 - Initial Commit. Currently displays the word "On!" when the 'c' k
 
 (Not necessarily in any order)
 
+- MAJOR CODE REWRITE (In progress!)
 - Translate the other Lenen Project games. (Awaiting Translations)
 - Add a black outline around labels to help visibility.
 - Add labels to handle other GUI elements, such as UI items and the pause menu.
